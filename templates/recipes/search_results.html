@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="mb-4 fw-bold text-dark">
+    Search Results for <span class="text-primary-blue">"{{ query }}"</span>
+</h2>
+
+<div class="row g-4">
+
+    {% for recipe in recipes %}
+
+    <div class="col-md-6 col-lg-4">
+
+        <div class="card h-100">
+
+            <img 
+                src="{{ recipe.strMealThumb }}" 
+                class="card-img-top" 
+                alt="{{ recipe.strMeal }}"
+                loading="lazy"
+            >
+
+            <div class="card-body d-flex flex-column justify-content-between p-4">
+                
+                <div>
+                    <h5 class="fw-bold mb-1 text-dark text-truncate">
+                        {{ recipe.strMeal }}
+                    </h5>
+
+                    <p class="text-muted small mb-3">
+                        <span class="recipe-badge">{{ recipe.strArea }} Cuisine</span>
+                    </p>
+                </div>
+
+                <div class="d-grid mt-2">
+                    <a href="{% url 'recipe-detail' recipe.idMeal %}" class="btn btn-primary-action text-center text-decoration-none">
+                        View Recipe
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% empty %}
+
+    <div class="col-12 text-center py-5">
+        <h4 class="text-muted fw-semibold">No recipes found matching your criteria.</h4>
+        <p class="text-secondary small">Try adjusting your keywords or searching for something else!</p>
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

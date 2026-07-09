@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="mb-4">Popular Recipes 🍽️</h2>
+
+<div class="row">
+
+    {% for recipe in recipes %}
+
+    <div class="col-md-4 mb-4">
+
+        <div class="card h-100">
+
+            <img
+                src="{{ recipe.strMealThumb }}"
+                class="card-img-top"
+                alt="{{ recipe.strMeal }}"
+            >
+
+            <div class="card-body">
+
+                <h5 class="card-title">
+                    {{ recipe.strMeal }}
+                </h5>
+
+                <p class="text-muted">
+                    {{ recipe.strArea }}
+                </p>
+
+            <a
+                href="{% url 'recipe-detail' recipe.idMeal %}"
+                class="btn btn-success"
+            >
+                View Recipe
+            </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}
